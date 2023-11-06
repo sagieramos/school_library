@@ -1,9 +1,9 @@
 <div align="center">
 
-  <img src="./Screenshot from 2023-11-02 01-48-52.png" alt="logo" max-width="746px"  height="auto" />
+  <img src="imuwahen_logo.png" alt="logo" width="140"  height="auto" />
   <br/>
 
-  <h3><b>Decode a Morse code message</b></h3>
+  <h3><b>Imuwahen</b></h3>
 
 </div>
 
@@ -84,9 +84,12 @@ Install this project with:
 ### Run tests
 
 To run tests, run the following command:
+``` sh
+  cd school_library
+```
 
 ``` sh
-  ruby school_library.rb
+  ruby main.rb
 ```
 
 ### For Unix:
@@ -94,13 +97,13 @@ To run tests, run the following command:
 First, you'll need to make the script executable
 
 ``` sh
-  chmod +x school_library.rb
+  chmod +x main.rb
 ```
 
 Then run this line in your terminal
 
 ``` sh
-  ./school_library.rb
+  ./main.rb
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -146,8 +149,16 @@ If you like this project, please stay tune for more features
 
 ## ❓ FAQ <a name="faq"></a>
 
-- **[How do I create a new PostgreSQL database?]**
-
+- **[How to use school_library interface in `irb`?]**
+``` sh
+    irb
+```
+inside the irb, import the interface: 
+``` sh
+    require "./person.rb"
+    require "./student.rb"
+    require "./teacher.rb"
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
