@@ -4,7 +4,7 @@ require_relative 'modules/person'
 require_relative 'modules/student'
 require_relative 'modules/teacher'
 
-person = Person.new(name: 'Osagie', age: 25)
+person = Person.new(25, name: 'Osagie')
 puts 'Person Info:'
 puts "ID: #{person.id}"
 puts "Name: #{person.name}"
@@ -12,7 +12,7 @@ puts "Age: #{person.age}"
 puts "Can use services? #{person.can_use_services? && 'Yes!'}"
 puts '--------------------------'
 
-student = Student.new(name: 'Ramos', age: 16, classroom: 'Math')
+student = Student.new(16, name: 'Ramos', classroom: 'Math')
 puts 'Student Info:'
 puts "ID: #{student.id}"
 puts "Name: #{student.name}"
@@ -22,7 +22,7 @@ puts "Can use services? #{student.can_use_services? && 'Yes!'}"
 puts "Play hooky: #{student.play_hooky}"
 puts '--------------------------'
 
-teacher = Teacher.new(name: 'Mr. Debo', age: 30, specialization: 'Science')
+teacher = Teacher.new(16, 'Science', name: 'Mr. Debo')
 puts 'Teacher Info:'
 puts "ID: #{teacher.id}"
 puts "Name: #{teacher.name}"
