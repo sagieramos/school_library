@@ -41,4 +41,3 @@ puts "Capitalized:\t#{capitalize_name.correct_name}"
 
 capitalized_trimmed_person = TrimmerDecorator.new(capitalize_name)
 puts "Trimmed:\t#{capitalized_trimmed_person.correct_name}"
-
