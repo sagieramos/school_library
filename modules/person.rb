@@ -1,4 +1,6 @@
-class Person
+requie "./nameble.rb"
+
+class Person < Nameable
   attr_reader :id
   attr_accessor :name, :age
 
