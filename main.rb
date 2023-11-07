@@ -3,8 +3,10 @@
 require_relative 'modules/person'
 require_relative 'modules/student'
 require_relative 'modules/teacher'
+require_relative 'modules/decorator'
 
-person = Person.new(25, name: 'Osagie')
+puts "DAY 1\n--------------------------"
+person = Person.new(25, name: 'maximilianus')
 puts 'Person Info:'
 puts "ID: #{person.id}"
 puts "Name: #{person.name}"
@@ -26,4 +28,16 @@ puts 'Teacher Info:'
 puts "ID: #{teacher.id}"
 puts "Name: #{teacher.name}"
 puts "Age: #{teacher.age}"
-puts "Can use services? #{teacher.can_use_services? && 'Yes!'}"
+puts "Can use services? #{teacher.can_use_services? && 'Yes!'}\n\n"
+
+puts "DAY 2\n--------------------------"
+puts 'The following code check if you managed to decorate your person'
+puts '--------------------------'
+
+puts "PERSON NAME:\t#{person.name}\n"
+
+capitalize_name = CapitalizeDecorator.new(person)
+puts "Capitalized:\t#{capitalize_name.correct_name}"
+
+capitalized_trimmed_person = TrimmerDecorator.new(capitalize_name)
+puts "Trimmed:\t#{capitalized_trimmed_person.correct_name}"
