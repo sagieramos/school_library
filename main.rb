@@ -56,21 +56,13 @@ student2 = Student.new(14, classroom2, name: 'Osagie')
 student3 = Student.new(16, classroom1, name: 'Tobi')
 student4 = Student.new(14, classroom2, name: 'Jasay')
 
-puts "#{student1.name} is in #{student1.classroom.label}"
-puts "Students in #{classroom1.label}: #{classroom1.students.map(&:name).join(', ')}"
-puts "#{student2.name} is in #{student2.classroom.label}"
-puts "Students in #{classroom2.label}: #{classroom2.students.map(&:name).join(', ')}"
-
-puts "--------------------------\n"
 classroom1.add_student(student1)
-classroom1.add_student(student3)
-classroom2.add_student(student2)
-classroom2.add_student(student4)
+classroom1.add_student(student2)
+classroom2.add_student(student3)
+classroom2.add_student(student3)
 
-puts "#{student1.name} is in #{student1.classroom.label}"
-puts "Students in #{classroom1.label}: #{classroom1.students.map(&:name).join(', ')}"
-puts "#{student2.name} is in #{student2.classroom.label}"
-puts "Students in #{classroom2.label}: #{classroom2.students.map(&:name).join(', ')}"
+puts "Students in #{classroom1.label}:\t#{classroom1.students.map(&:name).join(', ')}"
+puts "Students in #{classroom2.label}:\t#{classroom2.students.map(&:name).join(', ')}"
 
 puts "--------------------------\n\n"
 
