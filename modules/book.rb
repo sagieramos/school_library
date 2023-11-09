@@ -2,7 +2,8 @@ require 'date'
 require_relative 'rental'
 
 class Book
-  attr_accessor :title, :author, :rentals
+  attr_accessor :title, :author
+  attr_reader :rentals
 
   def initialize(title, author)
     @title = title
@@ -11,7 +12,8 @@ class Book
   end
 
   def add_rental(person)
-    rental = Rental.new(self, person, DateTime.now)
-    @rentals << rental
+    return "#{person.name}(#{person.id}) already own this book" if rentals.any? { |rental| rental.person == person }
+
+    Rental.new(self, person, DateTime.now)
   end
 end

@@ -1,8 +1,8 @@
 require_relative 'nameable'
 
 class Person < Nameable
-  attr_reader :id
-  attr_accessor :name, :age, :rentals
+  attr_reader :id, :rentals
+  attr_accessor :name, :age
 
   def initialize(age, name: 'Unknown', parent_permission: true)
     super()
@@ -21,9 +21,12 @@ class Person < Nameable
     @name
   end
 
-  def add_rental(person)
-    rental = Rental.new(self, person, Date.today)
-    @rentals << rental
+  def add_rental(book)
+    return "#{book.title} by #{book.author} is already in #{name}(#{id}) list of books" if rentals.any? do |rental|
+                                                                                             rental.book == book
+                                                                                           end
+
+    Rental.new(book, self, Date.today)
   end
 
   private

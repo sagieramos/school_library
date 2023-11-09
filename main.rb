@@ -74,26 +74,62 @@ puts "--------------------------\n\n"
 # Create book instances
 book1 = Book.new('The Great Gatsby', 'F. Scott Fitzgerald')
 book2 = Book.new('To Kill a Mockingbird', 'Harper Lee')
+book3 = Book.new('Ride or die', 'Unknown')
+book4 = Book.new('Turok', 'Redeem')
 
 person2 = Person.new(29, name: 'Abraham')
 person3 = Person.new(29, name: 'Abija')
 person4 = Person.new(24, name: 'Deborah')
+person5 = Person.new(15, name: 'Tope')
 
-book1.add_rental(person)
-book1.add_rental(person2)
-book1.add_rental(person3)
-book2.add_rental(person2)
-book2.add_rental(person4)
-book2.add_rental(student1)
-book2.add_rental(student3)
+puts "\nAdding Book to rental from book class"
+
+puts book1.add_rental(person)
+puts book1.add_rental(person2)
+puts book1.add_rental(person3)
+puts book1.add_rental(person3)
+puts book2.add_rental(person2)
+puts book2.add_rental(person4)
+puts book2.add_rental(student1)
+puts book2.add_rental(student3)
+puts book2.add_rental(student3)
+puts book2.add_rental(person4)
+
+puts "\nAdding Book to rental from person class"
+
+puts person2.add_rental(book3)
+puts person.add_rental(book4)
+puts person3.add_rental(book2)
+puts person3.add_rental(book3)
+puts person3.add_rental(book4)
+puts person3.add_rental(book4)
+puts person3.add_rental(book3)
+
+puts "\nAdding Book to rental from person class"
+
+puts student.add_rental(book1)
+puts student.add_rental(book1)
+puts student1.add_rental(book1)
+
+puts "--------------------------\n\n"
 
 # Print Book Rentals
 puts 'Book Rentals:'
 
-[book1, book2].each_with_index do |book, i|
+[book1, book2, book3].each_with_index do |book, i|
   puts "\n#{i + 1}. \"#{book.title}\"\
   By #{book.author}\
   \n\tRentals: #{book.rentals.map do |rental|
-                 "\n\t#{rental.person.name} (#{rental.person.age}yrs)  (#{rental.date})"
-               end.join(', ')}"
+                   "\n\t#{rental.person.name} (#{rental.person.age}yrs)  (#{rental.date})"
+                 end.join(', ')}"
 end
+
+puts "--------------------------\n\n"
+[person, person2, person3, person4, student, student1, student3, person5].each_with_index do |p, i|
+  puts "\n#{i + 1} #{p.name} is holding"
+  p.rentals.each do |rental|
+    puts "\t> #{rental.book.title} by #{rental.book.author} (#{rental.date})"
+  end
+end
+
+puts "--------------------------\n\n"
