@@ -5,7 +5,6 @@ require_relative 'modules/student'
 require_relative 'modules/teacher'
 require_relative 'modules/decorator'
 require_relative 'modules/book'
-require_relative 'modules/rental'
 require_relative 'modules/classroom'
 
 puts "DAY 1\n--------------------------"
@@ -68,35 +67,26 @@ puts "--------------------------\n\n"
 # Create book instances
 book1 = Book.new('The Great Gatsby', 'F. Scott Fitzgerald')
 book2 = Book.new('To Kill a Mockingbird', 'Harper Lee')
-book3 = Book.new('1984', 'George Orwell')
-book4 = Book.new('1960', 'Unknown')
 
 person2 = Person.new(29, name: 'Abraham')
 person3 = Person.new(29, name: 'Abija')
-person4 = Person.new(24, name: 'Nomal')
+person4 = Person.new(24, name: 'Deborah')
 
-rental1 = Rental.new(book1, person, '2023-11-10')
-rental2 = Rental.new(book2, person2, '2023-11-10')
-rental3 = Rental.new(book3, person3, '2023-11-11')
-rental4 = Rental.new(book4, person4, '2023-11-11')
+book1.add_rental(person)
+book1.add_rental(person2)
+book1.add_rental(person3)
+book2.add_rental(person2)
+book2.add_rental(person4)
+book2.add_rental(student1)
+book2.add_rental(student3)
 
 # Print Book Rentals
 puts 'Book Rentals:'
 
-[rental1, rental2, rental3, rental4].each_with_index do |rental, i|
-  puts "#{i + 1}: Book: #{rental.book.title},\
-  Author: #{rental.book.author},\
-  Rented by: #{rental.person.name},\
-  Date: #{rental.date}"
-end
-
-# Print Person Rentals
-puts "\nPerson Rentals:"
-
-[person, person2, person3, person4].each_with_index do |p, i|
-  p.rentals.each do |rental|
-    puts "#{i + 1}. #{rental.person.name}, Book: #{rental.book.title},\
-    Author: #{rental.book.author},\
-    Date: #{rental.date}"
-  end
+[book1, book2].each_with_index do |book, i|
+  puts "\n#{i + 1}. #{book.title},\
+  Author: #{book.author},\
+  \nRentals: #{book.rentals.map do |rental|
+                 "\n\t#{rental.person.name} #{rental.person.age}  (#{rental.date})"
+               end.join(', ')}"
 end
