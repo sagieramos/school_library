@@ -4,6 +4,8 @@ require_relative 'modules/person'
 require_relative 'modules/student'
 require_relative 'modules/teacher'
 require_relative 'modules/decorator'
+require_relative 'modules/book'
+require_relative 'modules/classroom'
 
 puts "DAY 1\n--------------------------"
 person = Person.new(25, name: 'maximilianus')
@@ -14,7 +16,7 @@ puts "Age: #{person.age}"
 puts "Can use services? #{person.can_use_services? && 'Yes!'}"
 puts '--------------------------'
 
-student = Student.new(16, 'Math', name: 'Ramos')
+student = Student.new(16, name: 'Ramos')
 puts 'Student Info:'
 puts "ID: #{student.id}"
 puts "Name: #{student.name}"
@@ -41,3 +43,50 @@ puts "Capitalized:\t#{capitalize_name.correct_name}"
 
 capitalized_trimmed_person = TrimmerDecorator.new(capitalize_name)
 puts "Trimmed:\t#{capitalized_trimmed_person.correct_name}"
+
+puts "\nDAY 3\n--------------------------\n"
+
+classroom1 = Classroom.new('Class One')
+classroom2 = Classroom.new('Class Two')
+student1 = Student.new(16, name: 'Ramos')
+student2 = Student.new(14, name: 'Osagie')
+student3 = Student.new(16, name: 'Tobi')
+student4 = Student.new(14, name: 'Jasay')
+
+classroom1.add_student(student1)
+classroom1.add_student(student2)
+classroom2.add_student(student3)
+classroom2.add_student(student3)
+classroom2.add_student(student4)
+
+puts "Students in #{classroom1.label}:\t#{classroom1.students.map(&:name).join(', ')}"
+puts "Students in #{classroom2.label}:\t#{classroom2.students.map(&:name).join(', ')}"
+
+puts "--------------------------\n\n"
+
+# Create book instances
+book1 = Book.new('The Great Gatsby', 'F. Scott Fitzgerald')
+book2 = Book.new('To Kill a Mockingbird', 'Harper Lee')
+
+person2 = Person.new(29, name: 'Abraham')
+person3 = Person.new(29, name: 'Abija')
+person4 = Person.new(24, name: 'Deborah')
+
+book1.add_rental(person)
+book1.add_rental(person2)
+book1.add_rental(person3)
+book2.add_rental(person2)
+book2.add_rental(person4)
+book2.add_rental(student1)
+book2.add_rental(student3)
+
+# Print Book Rentals
+puts 'Book Rentals:'
+
+[book1, book2].each_with_index do |book, i|
+  puts "\n#{i + 1}. #{book.title},\
+  Author: #{book.author},\
+  \nRentals: #{book.rentals.map do |rental|
+                 "\n\t#{rental.person.name} #{rental.person.age}  (#{rental.date})"
+               end.join(', ')}"
+end
