@@ -17,9 +17,7 @@ puts "Age: #{person.age}"
 puts "Can use services? #{person.can_use_services? && 'Yes!'}"
 puts '--------------------------'
 
-classroom = Classroom.new('Class A')
-
-student = Student.new(16, classroom, name: 'Ramos')
+student = Student.new(16, name: 'Ramos')
 puts 'Student Info:'
 puts "ID: #{student.id}"
 puts "Name: #{student.name}"
@@ -47,19 +45,20 @@ puts "Capitalized:\t#{capitalize_name.correct_name}"
 capitalized_trimmed_person = TrimmerDecorator.new(capitalize_name)
 puts "Trimmed:\t#{capitalized_trimmed_person.correct_name}"
 
-puts "DAY 3\n--------------------------\n"
+puts "\nDAY 3\n--------------------------\n"
 
 classroom1 = Classroom.new('Class One')
 classroom2 = Classroom.new('Class Two')
-student1 = Student.new(16, classroom1, name: 'Ramos')
-student2 = Student.new(14, classroom2, name: 'Osagie')
-student3 = Student.new(16, classroom1, name: 'Tobi')
-student4 = Student.new(14, classroom2, name: 'Jasay')
+student1 = Student.new(16, name: 'Ramos')
+student2 = Student.new(14, name: 'Osagie')
+student3 = Student.new(16, name: 'Tobi')
+student4 = Student.new(14, name: 'Jasay')
 
 classroom1.add_student(student1)
 classroom1.add_student(student2)
 classroom2.add_student(student3)
 classroom2.add_student(student3)
+classroom2.add_student(student4)
 
 puts "Students in #{classroom1.label}:\t#{classroom1.students.map(&:name).join(', ')}"
 puts "Students in #{classroom2.label}:\t#{classroom2.students.map(&:name).join(', ')}"
