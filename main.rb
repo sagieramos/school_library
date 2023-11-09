@@ -82,6 +82,12 @@ person3 = Person.new(29, name: 'Abija')
 person4 = Person.new(24, name: 'Deborah')
 person5 = Person.new(15, name: 'Tope')
 
+puts "--------------------------\nCreating teacher"
+
+teacher1 = Teacher.new(30, 'Chemistry', name: 'Mr Kaburu')
+teacher2 = Teacher.new(30, 'FineArt', name: 'Mr Kudus')
+teacher3 = Teacher.new(30, 'Physics', name: 'Mr Agbola')
+
 puts "\nAdding Book to rental from book class"
 
 puts book1.add_rental(person)
@@ -95,6 +101,9 @@ puts book2.add_rental(student3)
 puts book2.add_rental(student3)
 puts book2.add_rental(person4)
 
+puts "\nAdding teacher................................"
+puts book2.add_rental(teacher1)
+
 puts "\nAdding Book to rental from person class"
 
 puts person2.add_rental(book3)
@@ -105,11 +114,19 @@ puts person3.add_rental(book4)
 puts person3.add_rental(book4)
 puts person3.add_rental(book3)
 
-puts "\nAdding Book to rental from person class"
+puts "\nAdding Book to rental from student class"
 
 puts student.add_rental(book1)
 puts student.add_rental(book1)
 puts student1.add_rental(book1)
+
+puts "\nAdding Book to rental from Teacher class"
+
+puts teacher1.add_rental(book2)
+puts teacher1.add_rental(book3)
+puts teacher1.add_rental(book4)
+puts teacher2.add_rental(book2)
+puts teacher3.add_rental(book1)
 
 puts "--------------------------\n\n"
 
@@ -125,8 +142,10 @@ puts 'Book Rentals:'
 end
 
 puts "--------------------------\n\n"
-[person, person2, person3, person4, student, student1, student3, person5].each_with_index do |p, i|
-  puts "\n#{i + 1} #{p.name} is holding"
+[person, person2, person3, person4, student, student1, student3, person5, teacher1, teacher2,
+ teacher3].each_with_index do |p, i|
+  specialization = p.is_a?(Teacher) ? " (#{p.specialization} Teaher) " : nil
+  puts "\n#{i + 1} #{p.name}#{specialization}is holding"
   p.rentals.each do |rental|
     puts "\t> #{rental.book.title} by #{rental.book.author} (#{rental.date})"
   end
