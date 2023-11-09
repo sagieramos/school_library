@@ -59,8 +59,15 @@ classroom2.add_student(student3)
 classroom2.add_student(student3)
 classroom2.add_student(student4)
 
-puts "Students in #{classroom1.label}:\t#{classroom1.students.map(&:name).join(', ')}"
-puts "Students in #{classroom2.label}:\t#{classroom2.students.map(&:name).join(', ')}"
+[classroom1, classroom2].each do |classroom|
+  puts "Students in #{classroom.label}:\t#{classroom.students.map(&:name).join(', ')}"
+end
+
+puts "--------------------------\n\nList of all students and their classroom\n\n"
+
+[student1, student2, student3, student4].each_with_index do |s, i|
+  puts "#{i + 1} #{s.name} (#{s.age}yrs): \t#{s.classroom.label}"
+end
 
 puts "--------------------------\n\n"
 
@@ -84,9 +91,9 @@ book2.add_rental(student3)
 puts 'Book Rentals:'
 
 [book1, book2].each_with_index do |book, i|
-  puts "\n#{i + 1}. #{book.title},\
-  Author: #{book.author},\
-  \nRentals: #{book.rentals.map do |rental|
-                 "\n\t#{rental.person.name} #{rental.person.age}  (#{rental.date})"
+  puts "\n#{i + 1}. \"#{book.title}\"\
+  By #{book.author}\
+  \n\tRentals: #{book.rentals.map do |rental|
+                 "\n\t#{rental.person.name} (#{rental.person.age}yrs)  (#{rental.date})"
                end.join(', ')}"
 end
