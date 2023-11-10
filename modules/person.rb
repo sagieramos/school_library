@@ -1,3 +1,4 @@
+require 'date'
 require_relative 'nameable'
 
 class Person < Nameable
@@ -26,7 +27,7 @@ class Person < Nameable
                                                                                              rental.book == book
                                                                                            end
 
-    Rental.new(book, self, Date.today)
+    Rental.new(book, self, DateTime.now)
   end
 
   private
