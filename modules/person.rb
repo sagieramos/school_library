@@ -5,7 +5,7 @@ class Person < Nameable
   attr_reader :id, :rentals
   attr_accessor :name, :age
 
-  def initialize(age, name: 'Unknown', parent_permission: true)
+  def initialize(age, name = 'Unknown', parent_permission: true)
     super()
     @id = Random.rand(1..1000)
     @name = name
@@ -23,11 +23,11 @@ class Person < Nameable
   end
 
   def add_rental(book)
-    return "#{book.title} by #{book.author} is already in #{name}(#{id}) list of books" if rentals.any? do |rental|
-                                                                                             rental.book == book
-                                                                                           end
+    return "#{name}(#{id}) already own \"#{book.title}\" by #{book.author}" if rentals.any? do |rental|
+                                                                                 rental.book == book
+                                                                               end
 
-    Rental.new(book, self, DateTime.now)
+    Rental.new(book, self)
   end
 
   private

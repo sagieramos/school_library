@@ -59,7 +59,7 @@ class App
     name = gets.chomp
     print 'Specialization: '
     specialization = gets.chomp
-    teacher = Teacher.new(age, specialization, name: name)
+    teacher = Teacher.new(age, specialization, name)
     @people << teacher
     puts "Teacher #{teacher.name} created successfully!"
   end
@@ -69,7 +69,7 @@ class App
     age = gets.chomp.to_i
     print 'Name: '
     name = gets.chomp
-    student = Student.new(age, name: name)
+    student = Student.new(age, name)
     @people << student
     puts "Student #{student.name} created successfully!"
   end

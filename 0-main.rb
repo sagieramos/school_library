@@ -6,9 +6,10 @@ require_relative 'modules/teacher'
 require_relative 'modules/decorator'
 require_relative 'modules/book'
 require_relative 'modules/classroom'
+require_relative 'modules/rental'
 
 puts "DAY 1\n--------------------------"
-person = Person.new(25, name: 'maximilianus')
+person = Person.new(25, 'maximilianus')
 puts 'Person Info:'
 puts "ID: #{person.id}"
 puts "Name: #{person.name}"
@@ -16,7 +17,7 @@ puts "Age: #{person.age}"
 puts "Can use services? #{person.can_use_services? && 'Yes!'}"
 puts '--------------------------'
 
-student = Student.new(16, name: 'Ramos')
+student = Student.new(16, 'Ramos')
 puts 'Student Info:'
 puts "ID: #{student.id}"
 puts "Name: #{student.name}"
@@ -25,7 +26,7 @@ puts "Can use services? #{student.can_use_services? && 'Yes!'}"
 puts "Play hooky: #{student.play_hooky}"
 puts '--------------------------'
 
-teacher = Teacher.new(16, 'Science', name: 'Mr. Debo')
+teacher = Teacher.new(16, 'Science', 'Mr. Debo')
 puts 'Teacher Info:'
 puts "ID: #{teacher.id}"
 puts "Name: #{teacher.name}"
@@ -48,10 +49,10 @@ puts "\nDAY 3\n--------------------------\n"
 
 classroom1 = Classroom.new('Class One')
 classroom2 = Classroom.new('Class Two')
-student1 = Student.new(16, name: 'Ramos')
-student2 = Student.new(14, name: 'Osagie')
-student3 = Student.new(16, name: 'Tobi')
-student4 = Student.new(14, name: 'Jasay')
+student1 = Student.new(16, 'Ramos')
+student2 = Student.new(14, 'Osagie')
+student3 = Student.new(16, 'Tobi')
+student4 = Student.new(14, 'Jasay')
 
 classroom1.add_student(student1)
 classroom1.add_student(student2)
@@ -77,16 +78,16 @@ book2 = Book.new('To Kill a Mockingbird', 'Harper Lee')
 book3 = Book.new('Ride or die', 'Unknown')
 book4 = Book.new('Turok', 'Redeem')
 
-person2 = Person.new(29, name: 'Abraham')
-person3 = Person.new(29, name: 'Abija')
-person4 = Person.new(24, name: 'Deborah')
-person5 = Person.new(15, name: 'Tope')
+person2 = Person.new(29, 'Abraham')
+person3 = Person.new(29, 'Abija')
+person4 = Person.new(24, 'Deborah')
+person5 = Person.new(15, 'Tope')
 
 puts "--------------------------\nCreating teacher"
 
-teacher1 = Teacher.new(30, 'Chemistry', name: 'Mr Kaburu')
-teacher2 = Teacher.new(30, 'FineArt', name: 'Mr Kudus')
-teacher3 = Teacher.new(30, 'Physics', name: 'Mr Agbola')
+teacher1 = Teacher.new(30, 'Chemistry', 'Mr Kaburu')
+teacher2 = Teacher.new(30, 'FineArt', 'Mr Kudus')
+teacher3 = Teacher.new(30, 'Physics', 'Mr Agbola')
 
 puts "\nAdding Book to rental from book class"
 
@@ -152,3 +153,29 @@ puts "--------------------------\n\n"
 end
 
 puts "--------------------------\n\n"
+
+rent = Rental.new(book1, student1)
+puts book3.add_rental(student1)
+
+puts "--------------------------\n\n"
+puts book1.rentals
+
+puts "\nPerson/student/teacher instance\n-----".upcase
+
+puts student1.methods - Object.methods
+puts "\nbook instance\n-----".upcase
+puts book1.methods - Object.methods
+puts "\nRentals instance\n-----".upcase
+puts rent.methods - Object.methods
+
+puts Rental.new(book2, teacher1).status
+
+puts teacher1.add_rental(book2)
+puts book2.add_rental(teacher1)
+puts "book1 before creating rental: #{book1.rentals.length}"
+puts Rental.new(book1, teacher1).status
+# will not add the same rental
+puts "book1 after creating rental: #{book1.rentals.length}"
+puts Rental.new(book1, teacher1).status
+puts "book1 before creating another rental: #{book1.rentals.length}"
+puts book1.add_rental(teacher2)
