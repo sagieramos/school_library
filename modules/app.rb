@@ -19,7 +19,11 @@ class App
   def start
     display_menu
     choice = user_choice
-
+    if choice == '0'
+      puts EXIT_MESSAGE
+      break
+    end
+    
     if MENU_OPTIONS.key?(choice)
       send(MENU_OPTIONS[choice])
     else
