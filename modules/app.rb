@@ -23,7 +23,7 @@ class App
       puts EXIT_MESSAGE
       break
     end
-    
+
     if MENU_OPTIONS.key?(choice)
       send(MENU_OPTIONS[choice])
     else
