@@ -19,7 +19,7 @@ class App
   def start
     display_menu
     choice = user_choice
-    
+
     if choice == '0'
       puts EXIT_MESSAGE
       break
