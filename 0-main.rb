@@ -1,5 +1,6 @@
 #!/usr/bin/ruby -w
 
+require 'pry'
 require_relative 'modules/person'
 require_relative 'modules/student'
 require_relative 'modules/teacher'
@@ -178,4 +179,9 @@ puts Rental.new(book1, teacher1).status
 puts "book1 after creating rental: #{book1.rentals.length}"
 puts Rental.new(book1, teacher1).status
 puts "book1 before creating another rental: #{book1.rentals.length}"
-puts book1.add_rental(teacher2)
+puts (result = book1.add_rental(teacher2)).nil? ? 'This is null' : result
+puts (result = book1.add_rental(teacher2)).nil? ? 'This is null' : result
+
+binding.pry
+
+puts "program resumes here." 
