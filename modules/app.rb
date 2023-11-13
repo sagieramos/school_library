@@ -7,8 +7,6 @@ require_relative 'rental'
 require_relative 'student'
 require_relative 'teacher'
 
-EXIT_MESSAGE = "\n\nThank you for using this app\n\n".freeze
-
 class App
   def initialize
     @books = []
@@ -53,8 +51,15 @@ class App
   end
 
   def create_teacher
-    print 'Age: '
-    age = gets.chomp.to_i
+    age = nil
+    loop do
+      print 'Age: '
+      age = gets.chomp.to_i
+      break if age > 18
+
+      puts 'Teacher age must be 18 or greater. Please try again.'
+    end
+
     print 'Name: '
     name = gets.chomp
     print 'Specialization: '
@@ -65,20 +70,25 @@ class App
   end
 
   def create_student
-    print 'Age: '
-    age = gets.chomp.to_i
-    print 'Name: '
-    name = gets.chomp
+    age = nil
+    loop do
+      print 'Age: '
+      age = gets.chomp.to_i
+      break if age.positive?
+
+      puts 'Age must be greater than 0. Please try again.'
+    end
+
+    name = get_non_empty_input('Name')
     student = Student.new(age, name)
     @people << student
     puts "Student #{student.name} created successfully!"
   end
 
   def create_book
-    print "\nTitle: "
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
+    title = get_non_empty_input('Title')
+    author = get_non_empty_input('Author')
+
     book = Book.new(title, author)
     @books << book
     puts 'Book created successfully!'
@@ -130,55 +140,17 @@ class App
     end
   end
 
-  def start
-    loop do
-      display_menu
-      choice = user_choice
-      if choice.zero?
-        puts EXIT_MESSAGE
-        break
-      end
-      process_choice(choice)
-    rescue Interrupt
-      puts EXIT_MESSAGE
-      break
-    end
-  end
-
   private
 
-  def display_menu
-    puts "\nPlease choose an option by entering a number:"
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person ID'
-    puts '0 - Exit'
-  end
+  def get_non_empty_input(prompt)
+    input = nil
+    loop do
+      print "#{prompt}: "
+      input = gets.chomp.strip
+      break unless input.empty?
 
-  def process_choice(choice)
-    case choice
-    when 1
-      list_books
-    when 2
-      list_people
-    when 3
-      create_person
-    when 4
-      create_book
-    when 5
-      create_rental
-    when 6
-      list_rentals_for_person
-    else
-      puts 'Invalid option. Please try again.'
+      puts "#{prompt} cannot be empty. Please try again."
     end
-  end
-
-  def user_choice
-    print '>> '
-    gets.chomp.to_i
+    input
   end
 end
