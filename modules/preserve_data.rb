@@ -17,7 +17,7 @@ class PreserveData
       books_data = books.map do |book|
         {
           title: book.title,
-          author: book.author,
+          author: book.author
         }
       end
       file.puts(JSON.generate(books_data))
@@ -34,7 +34,7 @@ class PreserveData
           name: person.name,
           id: person.id,
           parent_permission: (person.parent_permission if person.is_a?(Student)),
-          specialization: (person.specialization if person.is_a?(Teacher)),
+          specialization: (person.specialization if person.is_a?(Teacher))
         }
       end
       file.puts(JSON.generate(people_data))
@@ -53,8 +53,8 @@ class PreserveData
 
   def self.load_people
     return [] unless File.exist?(File.join(DATA_DIR, 'people.json'))
-    return [] unless File.join(DATA_DIR, 'people.json').empty?
 
+    people_json = JSON.parse(File.read(File.join(DATA_DIR, 'people.json')))
     people_json.map do |person_data|
       case person_data['class']
       when 'Teacher'
@@ -63,6 +63,35 @@ class PreserveData
         Student.new(person_data['age'], person_data['name'], person_data['id'],
                     parent_permission: person_data['parent_permission'])
       end
+    end
+  end
+
+  def self.save_rentals(rentals, books, people)
+    ensure_data_directory
+    File.open(File.join(DATA_DIR, 'rentals.json'), 'w') do |file|
+      rentals_data = rentals.map do |rental|
+        {
+          person_index: people.index(rental.person),
+          book_index: books.index(rental.book),
+          rental_date: rental.date.to_s
+        }
+      end
+      file.puts(JSON.generate(rentals_data))
+    end
+  end
+
+  def self.load_rentals(books, people)
+    return [] unless File.exist?(File.join(DATA_DIR, 'rentals.json'))
+
+    rentals_json = JSON.parse(File.read(File.join(DATA_DIR, 'rentals.json')))
+    rentals_json.map do |rental_data|
+      person_index = rental_data['person_index']
+      book_index = rental_data['book_index']
+
+      person = people[person_index]
+      book = books[book_index]
+
+      Rental.new(book, person, DateTime.parse(rental_data['rental_date']))
     end
   end
 end

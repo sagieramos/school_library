@@ -12,12 +12,13 @@ class App
   def initialize
     @books = PreserveData.load_books
     @people = PreserveData.load_people
-    @rentals = []
+    @rentals = PreserveData.load_rentals(@books, @people)
   end
 
   def save_all_data
     PreserveData.save_books(@books)
     PreserveData.save_people(@people)
+    PreserveData.save_rentals(@rentals, @books, @people)
   end
 
   def list_books
@@ -25,7 +26,7 @@ class App
       puts "\nNo books to display. Create a book!"
     else
       puts "\nBooks:"
-      @books.each_with_index { |book, i| puts "#{i}) #{book.title} by #{book.author}" }
+      @books.each_with_index { |book, i| puts "#{i}) \"#{book.title}\" by #{book.author}" }
     end
   end
 
