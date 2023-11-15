@@ -17,7 +17,7 @@ class Book
   def add_rental(person, date = DateTime.now)
     raise ArgumentError, 'Person must be an instance of the Person class' unless person.is_a?(Person)
 
-    return "#{person.name}(#{person.id}) already own this book" if rentals.any? { |rental| rental.person == person }
+    return "#{person.name}(#{person.id}) already owns this book" if rentals.any? { |rental| rental.person == person }
 
     Rental.new(self, person, date)
   end
