@@ -6,12 +6,18 @@ require_relative 'person'
 require_relative 'rental'
 require_relative 'student'
 require_relative 'teacher'
+require_relative 'preserve_data'
 
 class App
   def initialize
-    @books = []
-    @people = []
+    @books = PreserveData.load_books
+    @people = PreserveData.load_people
     @rentals = []
+  end
+
+  def save_all_data
+    PreserveData.save_books(@books)
+    PreserveData.save_people(@people)
   end
 
   def list_books

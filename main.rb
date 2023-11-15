@@ -43,12 +43,14 @@ def start_app
 
     if choice == '0'
       puts EXIT_MESSAGE
+      app.save_all_data
       break
     end
 
     execute_option(app, choice)
   rescue Interrupt
     puts EXIT_MESSAGE
+    app.save_all_data
     break
   end
 end
