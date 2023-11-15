@@ -116,6 +116,11 @@ Then run this line in your terminal
 - Twitter: [@sagieramos](https://twitter.com/sagieramos)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/sagieramos)
 
+👤 **Samuel Boateng**
+- GitHub: [@samueltakyiboateng](https://github.com/samueltakyiboateng)
+- LinkedIn:[samuel-t-boateng](https://www.linkedin.com/in/samuel-t-boateng-ph-d-b47824127/)
+- Twitter: [@Radaah1](https://twitter.com/Radaah1)
+
 ## 🔭 Future Features <a name="future-features"></a>
 
 - [ ] **[More quaries]**

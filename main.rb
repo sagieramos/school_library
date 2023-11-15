@@ -42,12 +42,14 @@ def start_app
     choice = gets.chomp.strip
 
     if choice == '0'
+      app.save_all_data
       puts EXIT_MESSAGE
       break
     end
 
     execute_option(app, choice)
   rescue Interrupt
+    app.save_all_data
     puts EXIT_MESSAGE
     break
   end
