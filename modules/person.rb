@@ -23,9 +23,9 @@ class Person < Nameable
   end
 
   def add_rental(book)
-    return "#{name}(#{id}) already own \"#{book.title}\" by #{book.author}" if rentals.any? do |rental|
-                                                                                 rental.book == book
-                                                                               end
+    return "#{name}(#{id}) already owns \"#{book.title}\" by #{book.author}" if rentals.any? do |rental|
+                                                                                  rental.book == book
+                                                                                end
 
     Rental.new(book, self)
   end
