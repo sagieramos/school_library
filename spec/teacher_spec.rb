@@ -11,4 +11,4 @@ RSpec.describe Teacher do
       expect(teacher.rentals).to be_empty
     end
   end
-end   
+end

@@ -13,7 +13,7 @@ RSpec.describe Book do
   end
 
   describe '#add_rental' do
-  let(:person) { Person.new(20, 'Ayo', 1, parent_permission: true) }
+    let(:person) { Person.new(20, 'Ayo', 1, parent_permission: true) }
 
     it 'adds a rental for the book with the given person' do
       rental = book.add_rental(person)
